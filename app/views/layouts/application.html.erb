@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BartschUberForCats</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">UBER FOR CATS</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% unless current_user || current_driver %>
+        <li><%= link_to "SIGN UP", sign_up_path %></li>
+        <li><%= link_to "SIGN IN AS RIDER", sign_in_path %></li>
+        <% unless current_driver %>
+          <li><%= link_to "SIGN IN AS DRIVER", driver_sign_in_path %></li>
+        <% end %>
+      <% end %>
+
+      <% if current_user %>
+        <li><%= link_to "My Rides", riders_path %></li>
+        <li><%= link_to "Sign Out", sign_out_path %></li>
+      <% end %>
+
+      <% if current_driver %>
+        <li><%= link_to "My Dashboard", drivers_path %></li>
+        <li><%= link_to "Sign Out", driver_sign_out_path %></li>
+      <% end %>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container">
+
+<%= flash[:notice] %>
+
+<%= yield %>
+
+</div>
+
+</body>
+</html>

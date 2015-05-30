@@ -1,0 +1,52 @@
+<div class="page-header">
+  <h1>Dashboard for <%= @driver.username %></h1>
+</div>
+
+<h1>Current Appointments</h1>
+<table class="table">
+  <thead>
+    <th>Location for Pickup</th>
+    <th>Location for Dropoff</th>
+    <th>Time Requested for Pickup</th>
+    <th>Rider Name</th>
+    <th>Mark as Completed</th>
+  </thead>
+
+  <% @current_appointments.each do |appointment| %>
+  <tbody>
+    <tr>
+      <td><%= appointment.pickup_location %></td>
+      <td><%= appointment.dropoff_location %></td>
+      <td><%= appointment.pickup_time.strftime("%-I:%M %p") %></td>
+      <td><%= appointment.user.username %></td>
+      <td><%= form_for appointment do |f| %>
+      <%= f.label :completed %>
+      <%= f.check_box :completed %>
+      <%= f.submit "update" %>
+      <% end %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<h1>Past Appointments</h1>
+<table class="table">
+  <thead>
+    <th>Location for Pickup</th>
+    <th>Location for Dropoff</th>
+    <th>Time Requested for Pickup</th>
+    <th>Rider Name</th>
+  </thead>
+
+  <% @completed_appointments.each do |appointment| %>
+  <tbody>
+    <tr>
+      <td><%= appointment.pickup_location %></td>
+      <td><%= appointment.dropoff_location %></td>
+      <td><%= appointment.pickup_time.strftime("%-I:%M %p") %></td>
+      <td><%= appointment.user.username %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

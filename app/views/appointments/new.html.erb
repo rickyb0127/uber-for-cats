@@ -1,0 +1,9 @@
+<%= form_for @appointment do |f| %>
+  <%= f.label :pickup_time, "Pick Up Time" %>
+  <%= f.time_field :pickup_time %>
+  <%= f.label :pickup_location, "Pick Up Location" %>
+  <%= f.text_field :pickup_location %>
+  <%= f.label :dropoff_location, "Drop Off Location" %>
+  <%= f.text_field :dropoff_location %>
+  <%= f.submit "Create a pickup", class: "btn btn-primary" %>
+<% end %>

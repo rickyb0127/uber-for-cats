@@ -1,0 +1,8 @@
+<body class="welcome">
+  <div class="index-text">
+    <h1 class="index-font">Because Cats Need Rides Too!</h1>
+  </div>
+  <% unless current_user || current_driver %>
+    <%= link_to "SIGN UP", sign_up_path, class: "btn btn-primary" %>
+  <% end %>
+</body>
